@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
-using Application.Models;
 using Application.Models.Token;
+using Application.Models.User;
 using Flurl;
 using Flurl.Http;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace Infastucture.Repositories
             };
 
             return await Constants.ApiUrl
-                .AppendPathSegment("authentication/login")
+                .AppendPathSegment("/authentication/login")
                 .PostJsonAsync(userLogin)
                 .ReceiveJson<TokenResponse>();
         }
@@ -37,7 +37,7 @@ namespace Infastucture.Repositories
             };
 
             await Constants.ApiUrl
-                .AppendPathSegments("authentication")
+                .AppendPathSegments("/authentication")
                 .PostJsonAsync(userSignUp);
         }
     }

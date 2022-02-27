@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
-using Application.Models;
+using Application.Models.Fridge;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

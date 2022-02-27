@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces.Repositories;
-using Application.Models;
+using Application.Models.Fridge;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +15,7 @@ namespace Infastucture.Repositories
 
         public async Task<List<FridgeDto>> GetAllFridgesAsync() =>
             await _flurlClient
-            .Request("fridges")
+            .Request("/fridges")
             .GetJsonAsync<List<FridgeDto>>();
     }
 }
