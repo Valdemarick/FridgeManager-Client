@@ -15,7 +15,7 @@ namespace Infastucture.Services
             _userManagementRepository = userManagementRepository;
         }
 
-        public async Task<dynamic> LoginAsync(string userName, string password) =>
+        public async Task<string> LoginAsync(string userName, string password) =>
             await _userManagementRepository.LoginAsync(userName, password);
 
         public async Task SignUp(string name, string surname, string userName,
