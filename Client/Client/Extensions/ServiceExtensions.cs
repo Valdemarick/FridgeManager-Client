@@ -14,12 +14,14 @@ namespace Client.Extensions
         {
             services.AddScoped<IUserManagementRepository, UserManagementRepository>();
             services.AddScoped<IFridgeRepository, FridgeRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IUserManagementService, UserManagementService>();
             services.AddScoped<IFridgeService, FridgeService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         public static void ConfigureHttpContextAccessor(this IServiceCollection services) =>
