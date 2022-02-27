@@ -27,6 +27,8 @@ namespace Client
             services.AddControllersWithViews();
             services.ConfigureServices();
             services.ConfigureRepositories();
+            services.ConfigureFlurlClient();
+            services.ConfigureHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
