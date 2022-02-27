@@ -6,18 +6,18 @@ namespace Infastucture.Repositories
 {
     public abstract class BaseRepository
     {
-        protected readonly IFlurlClient _flurlClient;
-        protected readonly IHttpContextAccessor _httpContextAccessor;
+        protected readonly IFlurlClient flurlClient;
+        protected readonly IHttpContextAccessor httpContextAccessor;
 
         public BaseRepository(IFlurlClientFactory flurlClientFactory, IHttpContextAccessor httpContextAccessor)
         {
-            _flurlClient = flurlClientFactory.Get(Constants.ApiUrl);
+            flurlClient = flurlClientFactory.Get(Constants.ApiUrl);
 
-            _httpContextAccessor = httpContextAccessor;
+            this.httpContextAccessor = httpContextAccessor;
 
-            _flurlClient.BeforeCall(flurlCall =>
+            flurlClient.BeforeCall(flurlCall =>
             {
-                var token = _httpContextAccessor.HttpContext.Request.Cookies[Constants.XAccessToken];
+                var token = this.httpContextAccessor.HttpContext.Request.Cookies[Constants.XAccessToken];
 
                 if (!string.IsNullOrWhiteSpace(token))
                     flurlCall.HttpRequestMessage.SetHeader("Authorization", $"bearer {token}");

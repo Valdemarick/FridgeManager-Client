@@ -14,7 +14,7 @@ namespace Infastucture.Repositories
             : base(flurlClientFactory, httpContextAccessor) { }
 
         public async Task<List<FridgeDto>> GetAllFridgesAsync() =>
-            await _flurlClient
+            await flurlClient
             .Request("/fridges")
             .GetJsonAsync<List<FridgeDto>>();
     }
