@@ -1,7 +1,10 @@
-﻿using Client.Models;
+﻿using Application.Interfaces.Services;
+using Client.Models;
+using Infastucture;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Application.Interfaces.Services;
+
 namespace Client.Controllers
 {
     public class UserManagementController : Controller
@@ -38,7 +41,13 @@ namespace Client.Controllers
         {
             var token = await _userManagementService.LoginAsync(signInViewModel.UserName, signInViewModel.Password);
 
-            return RedirectToAction("ConfirmationReminder");
+            Response.Cookies.Append(Constants.XAccessToken, token.Token, new CookieOptions()
+            { 
+                HttpOnly = true,
+                SameSite = SameSiteMode.Strict
+            });
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

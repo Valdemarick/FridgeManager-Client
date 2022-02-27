@@ -14,7 +14,7 @@ namespace Infastucture.Repositories
             _flurlClient = flurlClientFactory.Get(Constants.ApiUrl);
 
             _httpContextAccessor = httpContextAccessor;
-            var token = _httpContextAccessor.HttpContext.Request.Cookies[Constants.XAccesstoken];
+            var token = _httpContextAccessor.HttpContext.Request.Cookies[Constants.XAccessToken];
 
             if (!string.IsNullOrWhiteSpace(token))
                 _flurlClient.WithOAuthBearerToken(token);
