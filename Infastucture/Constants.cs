@@ -8,7 +8,7 @@ namespace Infastucture
 {
     public static class Constants
     {
-        public const string XAccesstoken = "X-Access-Token";
+        public const string XAccessToken = "X-Access-Token";
         public const string ApiUrl = "https://localhost:5001/api";
     }
 }
