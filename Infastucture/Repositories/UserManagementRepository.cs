@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Models;
+using Application.Models.Token;
 using Flurl;
 using Flurl.Http;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Infastucture.Repositories
 {
     public class UserManagementRepository : IUserManagementRepository
     {
-        public async Task<string> LoginAsync(string userName, string password)
+        public async Task<TokenResponse> LoginAsync(string userName, string password)
         {
             var userLogin = new UserForAuthentication()
             {
@@ -17,12 +18,10 @@ namespace Infastucture.Repositories
                 Password = password
             };
 
-            var token = await Constants.ApiUrl
+            return await Constants.ApiUrl
                 .AppendPathSegment("authentication/login")
                 .PostJsonAsync(userLogin)
-                .ReceiveJson();
-
-            return token.ToString();
+                .ReceiveJson<TokenResponse>();
         }
 
         public async Task SignUp(string name, string surname, string userName, string password, string email, ICollection<string> roles)

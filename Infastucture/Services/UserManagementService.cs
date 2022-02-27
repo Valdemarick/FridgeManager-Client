@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
-using IdentityModel.Client;
+using Application.Models.Token;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,7 +15,7 @@ namespace Infastucture.Services
             _userManagementRepository = userManagementRepository;
         }
 
-        public async Task<string> LoginAsync(string userName, string password) =>
+        public async Task<TokenResponse> LoginAsync(string userName, string password) =>
             await _userManagementRepository.LoginAsync(userName, password);
 
         public async Task SignUp(string name, string surname, string userName,
