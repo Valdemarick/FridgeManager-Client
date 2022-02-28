@@ -19,8 +19,8 @@ namespace Infastucture.Services
             await _userManagementRepository.LoginAsync(userName, password);
 
         public async Task SignUp(string name, string surname, string userName,
-            string password, string email, ICollection<string> roles) =>
-            await _userManagementRepository.SignUp(name, surname, userName, password, email, roles);
+            string password, string email) =>
+            await _userManagementRepository.SignUp(name, surname, userName, password, email);
 
     }
 }

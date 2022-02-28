@@ -24,8 +24,9 @@ namespace Infastucture.Repositories
                 .ReceiveJson<TokenResponse>();
         }
 
-        public async Task SignUp(string name, string surname, string userName, string password, string email, ICollection<string> roles)
+        public async Task SignUp(string name, string surname, string userName, string password, string email)
         {
+            var defaultRole = new List<string> { "User" };
             var userSignUp = new UserForRegistration()
             {
                 Name = name,
@@ -33,7 +34,7 @@ namespace Infastucture.Repositories
                 UserName = userName,
                 Email = email,
                 Password = password,
-                Roles = roles
+                Roles = defaultRole
             };
 
             await Constants.ApiUrl

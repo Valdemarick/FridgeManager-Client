@@ -7,7 +7,7 @@ namespace Application.Interfaces.Services
     public interface IUserManagementService
     {
         Task SignUp(string name, string surname, string userName,
-            string password, string email, ICollection<string> roles);
+            string password, string email);
         Task<TokenResponse> LoginAsync(string userName, string password);
     }
 }
