@@ -86,7 +86,7 @@
 </style>
 <div class="blue-container">
     <div class="signup-form pt-5">
-        @using (@Html.BeginForm("SignIn", "UserManagement", FormMethod.Post))
+        @using (@Html.BeginForm("SignInPostAsync", "UserManagement", FormMethod.Post))
         {
             <h2>Login</h2>
             <p>Enter your user name and password to login</p>
@@ -101,7 +101,7 @@
                 <button type="submit" class="btn btn-primary btn-lg">Login</button>
             </div>
         }
-        <div class="hint-text">Need an account? <a href="#">Sign up here</a></div>
+        <div class="hint-text">Need an account? <a asp-controller="UserManagement" asp-action="SignUp">Sign up here</a></div>
     </div>
 </div>
 
