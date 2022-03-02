@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 #nullable enable
 
-namespace Client.Models.User
+namespace Client.Models.Users
 {
     public class SignUpViewModel
     {

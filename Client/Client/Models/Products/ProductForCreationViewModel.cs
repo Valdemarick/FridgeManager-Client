@@ -1,4 +1,4 @@
-﻿namespace Client.Models.Product
+﻿namespace Client.Models.Products
 {
     public class ProductForCreationViewModel
     {
