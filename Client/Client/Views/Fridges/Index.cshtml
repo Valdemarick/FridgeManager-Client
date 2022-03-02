@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Application.Models.Fridge.FridgeDto>
+﻿@model Client.Models.FridgesViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Fridges</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,34 +13,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OwnerName)
+                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].OwnerName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
+             <th>
+                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].Manufacturer)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductionYear)
+             <th>
+                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].ProductionYear)
             </th>
-            <th></th>
+    @*            <th></th>*@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var fridge in Model.Fridges) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => fridge.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OwnerName)
+                @Html.DisplayFor(modelItem => fridge.OwnerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
+                @Html.DisplayFor(modelItem => fridge.Manufacturer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductionYear)
+                @Html.DisplayFor(modelItem => fridge.ProductionYear)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

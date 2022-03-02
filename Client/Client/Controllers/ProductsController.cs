@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Services;
+using Client.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -15,7 +16,10 @@ namespace Client.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetAllProductsAsync();
+            var products = new ProductsViewModel
+            {
+                Products = await _productService.GetAllProductsAsync()
+            };
 
             return View(products);
         }

@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Services;
+using Client.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -15,7 +16,10 @@ namespace Client.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var fridges = await _fridgeService.GetAllFridgesAsync();
+            var fridges = new FridgesViewModel
+            {
+                Fridges = await _fridgeService.GetAllFridgesAsync()
+            };
 
             return View(fridges);
         }
