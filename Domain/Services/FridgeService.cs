@@ -1,0 +1,21 @@
+﻿using Domain.Entities.Fridges;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Infastucture.Services
+{
+    public class FridgeService : IFridgeService
+    {
+        private readonly IFridgeRepository _fridgeRepository;
+
+        public FridgeService(IFridgeRepository fridgeRepository)
+        {
+            _fridgeRepository = fridgeRepository;
+        }
+
+        public async Task<List<Fridge>> GetAllFridgesAsync() =>
+            await _fridgeRepository.GetAllFridgesAsync();
+    }
+}
