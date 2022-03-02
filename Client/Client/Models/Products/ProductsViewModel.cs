@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Entities.Products;
+using System.Collections.Generic;
 
 namespace Client.Models.Products
 {
     public class ProductsViewModel
     {
-        public List<Domain.Entities.Product.Product> Products { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

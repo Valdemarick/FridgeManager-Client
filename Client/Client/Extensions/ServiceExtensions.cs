@@ -1,5 +1,7 @@
-﻿using Application.Interfaces.Repositories;
-using Application.Interfaces.Services;
+﻿using Application.Interfaces.Services;
+using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using Flurl.Http.Configuration;
 using Infastucture.Repositories;
 using Infastucture.Services;
