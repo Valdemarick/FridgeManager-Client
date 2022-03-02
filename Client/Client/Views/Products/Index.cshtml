@@ -1,4 +1,4 @@
-﻿@model Client.Models.ProductsViewModel
+﻿@model Client.Models.Product.ProductsViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="Products" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
