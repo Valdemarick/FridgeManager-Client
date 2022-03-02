@@ -1,7 +1,7 @@
 ﻿using Application.Models.Product;
 using System.Collections.Generic;
 
-namespace Client.Models
+namespace Client.Models.Product
 {
     public class ProductsViewModel
     {

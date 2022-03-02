@@ -1,4 +1,4 @@
-﻿namespace Client.Models
+﻿namespace Client.Models.User
 {
     public class SignInViewModel
     {
