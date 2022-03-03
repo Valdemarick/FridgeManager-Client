@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -30,5 +31,10 @@ namespace Infastucture.Repositories
                 .Request("/products")
                 .PostJsonAsync(productForCreation);
         }
+
+        public async Task DeleteProductAsync(Guid id) =>
+            await flurlClient
+            .Request($"/products/{id}")
+            .DeleteAsync();
     }
 }
