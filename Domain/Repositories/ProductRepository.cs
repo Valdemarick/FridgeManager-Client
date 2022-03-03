@@ -36,5 +36,18 @@ namespace Infastucture.Repositories
             await flurlClient
             .Request($"/products/{id}")
             .DeleteAsync();
+
+        public async Task UpdateProductAsync(Guid id, string name, int quantity)
+        {
+            var productForUpdate = new ProductForUpdate()
+            {
+                Name = name,
+                Quantity = quantity
+            };
+
+            await flurlClient
+                .Request($"products/{id}")
+                .PutJsonAsync(productForUpdate);
+        }
     }
 }

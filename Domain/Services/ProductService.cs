@@ -24,5 +24,8 @@ namespace Infastucture.Services
 
         public async Task DeleteProductAsync(Guid id) =>
             await _productRepository.DeleteProductAsync(id);
+
+        public async Task UpdateProductAsync(Guid id, string name, int quantity) =>
+            await _productRepository.UpdateProductAsync(id, name, quantity);
     }
 }
