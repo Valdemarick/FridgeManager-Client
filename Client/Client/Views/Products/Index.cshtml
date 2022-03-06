@@ -1,10 +1,10 @@
 ﻿@model Client.Models.Products.ProductsViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Products";
 }
 
-<h1>Index</h1>
+<h1>Products</h1>
 
 <p>
     <a asp-controller="Products" asp-action="Create">Create New</a>
@@ -37,9 +37,17 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @using(Html.BeginForm("Update", "Products"))
+                {
+                    @Html.Hidden("Id", item.Id)
+                    @Html.Hidden("Name", item.Name)
+                    @Html.Hidden("Quantity", item.Quantity);
+                    <input type="submit"  value="Update"/>
+                }
+                @using (Html.BeginForm("DeleteProductAsync", "Products")){
+                    @Html.Hidden("Id", item.Id)
+                    <input type="submit" value="Delete"/>
+                }
             </td>
         </tr>
 }

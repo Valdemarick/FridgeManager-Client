@@ -1,17 +1,18 @@
-﻿@model Client.Models.Products.ProductForCreationViewModel
+﻿@model Client.Models.Products.ProductForUpdateViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
-<h1>Create Product</h1>
+<h1>Update</h1>
+
 <hr />
-<p>On this page, you can create a new product</p>
 <div class="row">
     <div class="col-md-4">
-        @using (@Html.BeginForm("CreateProductAsync", "Products", FormMethod.Post))
+        @using(@Html.BeginForm("UpdateProductAsync", "Products", FormMethod.Post))
         {
             @Html.ValidationSummary()
+            @Html.Hidden("Id", @Model.Id)
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -21,7 +22,7 @@
                 <input asp-for="Quantity" class="form-control" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         }
     </div>
@@ -30,4 +31,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
