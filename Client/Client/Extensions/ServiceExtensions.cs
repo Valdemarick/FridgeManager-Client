@@ -3,8 +3,8 @@ using Domain.Interfaces;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Flurl.Http.Configuration;
-using Infastucture.Repositories;
-using Infastucture.Services;
+using Domain.Repositories;
+using Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 

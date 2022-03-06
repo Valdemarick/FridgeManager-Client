@@ -3,7 +3,7 @@ using Domain.Interfaces;
 using Domain.Interfaces.Services;
 using System.Threading.Tasks;
 
-namespace Infastucture.Services
+namespace Domain.Repositories
 {
     public class UserManagementService : IUserManagementService
     {

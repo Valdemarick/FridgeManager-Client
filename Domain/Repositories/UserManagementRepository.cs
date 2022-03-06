@@ -7,7 +7,7 @@ using Flurl.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Infastucture.Repositories
+namespace Domain.Repositories
 {
     public class UserManagementRepository : IUserManagementRepository
     {

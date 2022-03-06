@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Infastucture.Services
+namespace Domain.Services
 {
     public class FridgeService : IFridgeService
     {

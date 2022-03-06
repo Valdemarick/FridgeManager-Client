@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Infastucture.Repositories
+namespace Domain.Repositories
 {
     public class FridgeRepository : BaseRepository, IFridgeRepository
     {

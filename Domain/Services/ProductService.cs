@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Infastucture.Services
+namespace Domain.Repositories
 {
     public class ProductService : IProductService
     {

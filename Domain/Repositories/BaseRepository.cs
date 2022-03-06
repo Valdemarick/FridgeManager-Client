@@ -3,7 +3,7 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Http;
 
-namespace Infastucture.Repositories
+namespace Domain.Repositories
 {
     public abstract class BaseRepository
     {
