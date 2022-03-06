@@ -19,13 +19,13 @@ namespace Infastucture.Services
         public async Task<List<Product>> GetAllProductsAsync() =>
             await _productRepository.GetAllProductsAsync();
 
-        public async Task CreateProductAsync(string name, int quantity) =>
-            await _productRepository.CreateProductAsync(name, quantity);
+        public async Task CreateProductAsync(ProductForCreation productForCreation) =>
+            await _productRepository.CreateProductAsync(productForCreation);
 
         public async Task DeleteProductAsync(Guid id) =>
             await _productRepository.DeleteProductAsync(id);
 
-        public async Task UpdateProductAsync(Guid id, string name, int quantity) =>
-            await _productRepository.UpdateProductAsync(id, name, quantity);
+        public async Task UpdateProductAsync(ProductForUpdate productForUpdate) =>
+            await _productRepository.UpdateProductAsync(productForUpdate);
     }
 }

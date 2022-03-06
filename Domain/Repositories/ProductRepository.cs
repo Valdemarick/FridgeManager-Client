@@ -19,14 +19,8 @@ namespace Infastucture.Repositories
             .Request("/products")
             .GetJsonAsync<List<Product>>();
 
-        public async Task CreateProductAsync(string name, int quantity)
+        public async Task CreateProductAsync(ProductForCreation productForCreation)
         {
-            var productForCreation = new ProductForCreation()
-            {
-                Name = name,
-                Quantity = quantity
-            };
-
             await flurlClient
                 .Request("/products")
                 .PostJsonAsync(productForCreation);
@@ -37,17 +31,9 @@ namespace Infastucture.Repositories
             .Request($"/products/{id}")
             .DeleteAsync();
 
-        public async Task UpdateProductAsync(Guid id, string name, int quantity)
-        {
-            var productForUpdate = new ProductForUpdate()
-            {
-                Name = name,
-                Quantity = quantity
-            };
-
+        public async Task UpdateProductAsync(ProductForUpdate productForUpdate) =>
             await flurlClient
-                .Request($"products/{id}")
+                .Request($"products/{productForUpdate.Id}")
                 .PutJsonAsync(productForUpdate);
-        }
     }
 }

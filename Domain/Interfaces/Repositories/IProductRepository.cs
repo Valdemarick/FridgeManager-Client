@@ -8,8 +8,8 @@ namespace Domain.Interfaces
     public interface IProductRepository
     {
         Task<List<Product>> GetAllProductsAsync();
-        Task CreateProductAsync(string name, int quantity);
+        Task CreateProductAsync(ProductForCreation productForCreation);
         Task DeleteProductAsync(Guid id);
-        Task UpdateProductAsync(Guid id, string name, int quantity);
+        Task UpdateProductAsync(ProductForUpdate productForUpdate);
     }
 }
