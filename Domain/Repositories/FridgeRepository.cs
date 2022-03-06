@@ -3,6 +3,7 @@ using Domain.Interfaces.Repositories;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,5 +18,15 @@ namespace Infastucture.Repositories
             await flurlClient
             .Request("/fridges")
             .GetJsonAsync<List<Fridge>>();
+
+        public async Task CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
+            await flurlClient
+            .Request("/fridges")
+            .PostJsonAsync(fridgeForCreation);
+
+        public async Task DeleteFridgeAsync(Guid id) =>
+            await flurlClient
+            .Request($"/fridges/{id}")
+            .DeleteAsync();
     }
 }

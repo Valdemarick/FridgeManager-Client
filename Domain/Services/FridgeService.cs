@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.Fridges;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,5 +18,11 @@ namespace Infastucture.Services
 
         public async Task<List<Fridge>> GetAllFridgesAsync() =>
             await _fridgeRepository.GetAllFridgesAsync();
+
+        public async Task CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
+            await _fridgeRepository.CreateFridgeAsync(fridgeForCreation);
+
+        public async Task DeleteFridgeAsync(Guid id) =>
+            await _fridgeRepository.DeleteFridgeAsync(id);
     }
 }
