@@ -28,5 +28,10 @@ namespace Domain.Repositories
             await flurlClient
             .Request($"/fridges/{id}")
             .DeleteAsync();
+
+        public async Task UpdateFridgeAsync(FridgeForUpdate fridgeForUpdate) =>
+            await flurlClient
+            .Request($"/fridges/{fridgeForUpdate.Id}")
+            .PutJsonAsync(fridgeForUpdate);
     }
 }

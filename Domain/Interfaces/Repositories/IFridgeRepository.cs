@@ -10,5 +10,6 @@ namespace Domain.Interfaces.Repositories
         Task<List<Fridge>> GetAllFridgesAsync();
         Task CreateFridgeAsync(FridgeForCreation fridgeForCreation);
         Task DeleteFridgeAsync(Guid id);
+        Task UpdateFridgeAsync(FridgeForUpdate fridgeForUpdate);
     }
 }
