@@ -24,7 +24,9 @@
              <th>
                 @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].ProductionYear)
             </th>
-    @*            <th></th>*@
+            <th>
+                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].Description)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -43,9 +45,21 @@
                 @Html.DisplayFor(modelItem => fridge.ProductionYear)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => fridge.Description)
+            </td>
+            <td>
+                @using (@Html.BeginForm("Update", "Fridges"))
+                {
+                    @Html.Hidden("Id", fridge.Id)
+                    @Html.Hidden("OwnerName", fridge.OwnerName)
+                    @Html.Hidden("Description", fridge.Description)
+                    <input type="submit"  value="Update"/>
+                }
+                @using (@Html.BeginForm("DeleteFridgeAsync", "Fridges", FormMethod.Post))
+                {
+                    @Html.Hidden("Id", fridge.Id)
+                    <input type="submit" value="Delete"/>
+                }
             </td>
         </tr>
 }
