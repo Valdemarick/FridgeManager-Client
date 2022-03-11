@@ -1,10 +1,9 @@
 ﻿using Domain.Entities.Products;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces.Services
+namespace Domain.Interfaces.Services
 {
     public interface IProductService
     {
