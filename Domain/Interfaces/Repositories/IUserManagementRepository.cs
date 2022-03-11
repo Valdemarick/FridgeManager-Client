@@ -1,7 +1,7 @@
 ﻿using Domain.Entities.Token;
 using System.Threading.Tasks;
 
-namespace Domain.Interfaces
+namespace Domain.Interfaces.Repositories
 {
     public interface IUserManagementRepository
     {
