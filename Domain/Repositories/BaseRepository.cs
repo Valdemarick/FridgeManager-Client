@@ -7,18 +7,18 @@ namespace Domain.Repositories
 {
     public abstract class BaseRepository
     {
-        protected readonly IFlurlClient flurlClient;
-        protected readonly IHttpContextAccessor httpContextAccessor;
+        protected readonly IFlurlClient FlurlClient;
+        protected readonly IHttpContextAccessor HttpContextAccessor;
 
         public BaseRepository(IFlurlClientFactory flurlClientFactory, IHttpContextAccessor httpContextAccessor)
         {
-            flurlClient = flurlClientFactory.Get(Constants.ApiUrl);
+            FlurlClient = flurlClientFactory.Get(Constants.ApiUrl);
 
-            this.httpContextAccessor = httpContextAccessor;
+            this.HttpContextAccessor = httpContextAccessor;
 
-            flurlClient.BeforeCall(flurlCall =>
+            FlurlClient.BeforeCall(flurlCall =>
             {
-                var token = this.httpContextAccessor.HttpContext.Request.Cookies[Constants.XAccessToken];
+                var token = this.HttpContextAccessor.HttpContext.Request.Cookies[Constants.XAccessToken];
 
                 if (!string.IsNullOrWhiteSpace(token))
                     flurlCall.HttpRequestMessage.SetHeader("Authorization", $"bearer {token}");

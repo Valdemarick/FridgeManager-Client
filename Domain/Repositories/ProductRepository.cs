@@ -15,25 +15,23 @@ namespace Domain.Repositories
             : base(flurlClientFactory, httpContextAccessor) { }
 
         public async Task<List<Product>> GetAllProductsAsync() =>
-            await flurlClient
+            await FlurlClient
             .Request("/products")
             .GetJsonAsync<List<Product>>();
 
-        public async Task CreateProductAsync(ProductForCreation productForCreation)
-        {
-            await flurlClient
-                .Request("/products")
-                .PostJsonAsync(productForCreation);
-        }
+        public async Task CreateProductAsync(ProductForCreation productForCreation) =>
+            await FlurlClient
+            .Request("/products")
+            .PostJsonAsync(productForCreation);
 
         public async Task DeleteProductAsync(Guid id) =>
-            await flurlClient
+            await FlurlClient
             .Request($"/products/{id}")
             .DeleteAsync();
 
         public async Task UpdateProductAsync(ProductForUpdate productForUpdate) =>
-            await flurlClient
-                .Request($"products/{productForUpdate.Id}")
-                .PutJsonAsync(productForUpdate);
+            await FlurlClient
+            .Request($"products/{productForUpdate.Id}")
+            .PutJsonAsync(productForUpdate);
     }
 }

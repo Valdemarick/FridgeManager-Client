@@ -15,22 +15,22 @@ namespace Domain.Repositories
             : base(flurlClientFactory, httpContextAccessor) { }
 
         public async Task<List<Fridge>> GetAllFridgesAsync() =>
-            await flurlClient
+            await FlurlClient
             .Request("/fridges")
             .GetJsonAsync<List<Fridge>>();
 
         public async Task CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
-            await flurlClient
+            await FlurlClient
             .Request("/fridges")
             .PostJsonAsync(fridgeForCreation);
 
         public async Task DeleteFridgeAsync(Guid id) =>
-            await flurlClient
+            await FlurlClient
             .Request($"/fridges/{id}")
             .DeleteAsync();
 
         public async Task UpdateFridgeAsync(FridgeForUpdate fridgeForUpdate) =>
-            await flurlClient
+            await FlurlClient
             .Request($"/fridges/{fridgeForUpdate.Id}")
             .PutJsonAsync(fridgeForUpdate);
     }

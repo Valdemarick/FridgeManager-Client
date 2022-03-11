@@ -14,7 +14,7 @@ namespace Domain.Repositories
             : base(flurlClientFactory, httpContextAccessor) { }
 
         public async Task<List<FridgeModel>> GetAllFridgeModelsAsync() =>
-            await flurlClient
+            await FlurlClient
             .Request("/fridge-models")
             .GetJsonAsync<List<FridgeModel>>();
     }
