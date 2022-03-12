@@ -7,7 +7,7 @@ namespace Domain.Entities.Fridges
         public Guid Id { get; set; }
         public string OwnerName { get; set; }
         public string Manufacturer { get; set; }
-        public int ProductionYear { get; set; }
+        public int? ProductionYear { get; set; }
         public string Description { get; set; }
     }
 }
