@@ -19,10 +19,11 @@ namespace Domain.Repositories
             .Request("/fridges")
             .GetJsonAsync<List<Fridge>>();
 
-        public async Task CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
+        public async Task<Fridge> CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
             await FlurlClient
             .Request("/fridges")
-            .PostJsonAsync(fridgeForCreation);
+            .PostJsonAsync(fridgeForCreation)
+            .ReceiveJson<Fridge>();
 
         public async Task DeleteFridgeAsync(Guid id) =>
             await FlurlClient

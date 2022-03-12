@@ -19,7 +19,7 @@ namespace Domain.Services
         public async Task<List<Fridge>> GetAllFridgesAsync() =>
             await _fridgeRepository.GetAllFridgesAsync();
 
-        public async Task CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
+        public async Task<Fridge> CreateFridgeAsync(FridgeForCreation fridgeForCreation) =>
             await _fridgeRepository.CreateFridgeAsync(fridgeForCreation);
 
         public async Task DeleteFridgeAsync(Guid id) =>

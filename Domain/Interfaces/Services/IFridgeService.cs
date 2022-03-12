@@ -8,7 +8,7 @@ namespace Domain.Interfaces.Services
     public interface IFridgeService
     {
         Task<List<Fridge>> GetAllFridgesAsync();
-        Task CreateFridgeAsync(FridgeForCreation fridgeForCreation);
+        Task<Fridge> CreateFridgeAsync(FridgeForCreation fridgeForCreation);
         Task DeleteFridgeAsync(Guid id);
         Task UpdateFridgeAsync(FridgeForUpdate fridgeForUpdate);
     }
