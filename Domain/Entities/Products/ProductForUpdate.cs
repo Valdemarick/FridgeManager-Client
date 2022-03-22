@@ -2,10 +2,8 @@
 
 namespace Domain.Entities.Products
 {
-    public class ProductForUpdate
+    public class ProductForUpdate : ProductForManipulation
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public int Quantity { get; set; }
     }
 }
