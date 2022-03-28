@@ -1,6 +1,4 @@
-﻿using Application.Interfaces.Services;
-using Domain.Interfaces;
-using Domain.Interfaces.Repositories;
+﻿using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Flurl.Http.Configuration;
 using Domain.Repositories;
@@ -17,6 +15,9 @@ namespace Client.Extensions
             services.AddScoped<IUserManagementRepository, UserManagementRepository>();
             services.AddScoped<IFridgeRepository, FridgeRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IFridgeModelRepository, FridgeModelRepository>();
+            services.AddScoped<IFridgeProductRepository, FridgeProductRepository>();
+            services.AddScoped<IServiceManager, ServiceManager>();
         }
 
         public static void ConfigureServices(this IServiceCollection services)
@@ -24,6 +25,8 @@ namespace Client.Extensions
             services.AddScoped<IUserManagementService, UserManagementService>();
             services.AddScoped<IFridgeService, FridgeService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IFridgeModelService, FridgeModelService>();
+            services.AddScoped<IFridgeProductService, FridgeProductService>();
         }
 
         public static void ConfigureHttpContextAccessor(this IServiceCollection services) =>
