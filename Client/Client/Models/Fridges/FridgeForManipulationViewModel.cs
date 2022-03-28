@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Client.Models.Fridges
 {
-    public class FridgeForManipulationViewModel
+    public abstract class FridgeForManipulationViewModel
     {
         [MaxLength(50, ErrorMessage = "Maximum length of 'OwnerName' is 50 characters")]
         public string OwnerName { get; set; }
