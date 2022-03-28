@@ -1,9 +1,9 @@
 ﻿using Domain.Entities.Token;
-using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using System.Threading.Tasks;
 
-namespace Domain.Repositories
+namespace Domain.Services
 {
     public class UserManagementService : IUserManagementService
     {

@@ -1,11 +1,11 @@
-﻿using Application.Interfaces.Services;
-using Domain.Entities.Products;
-using Domain.Interfaces;
+﻿using Domain.Entities.Products;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Domain.Repositories
+namespace Domain.Services
 {
     public class ProductService : IProductService
     {

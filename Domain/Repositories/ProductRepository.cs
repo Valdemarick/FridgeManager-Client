@@ -1,5 +1,5 @@
 ﻿using Domain.Entities.Products;
-using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Http;

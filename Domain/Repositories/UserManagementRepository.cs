@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using Domain.Entities.Token;
 using Domain.Entities.Users;
-using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Flurl;
 using Flurl.Http;
 using System.Collections.Generic;
