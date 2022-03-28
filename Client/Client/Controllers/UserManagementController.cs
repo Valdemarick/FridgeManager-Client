@@ -1,6 +1,6 @@
-﻿using Application.Interfaces.Services;
-using Client.Models;
-using Infastucture;
+﻿using Client.Models.Users;
+using Domain.Common;
+using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -9,11 +9,11 @@ namespace Client.Controllers
 {
     public class UserManagementController : Controller
     {
-        private readonly IUserManagementService _userManagementService;
+        private readonly IServiceManager _serviceManager;
 
-        public UserManagementController(IUserManagementService userManagementService)
+        public UserManagementController(IServiceManager serviceManager)
         {
-            _userManagementService = userManagementService;
+            _serviceManager = serviceManager;
         }
 
         public IActionResult Index()
@@ -21,28 +21,35 @@ namespace Client.Controllers
             return View();
         }
 
-        public IActionResult ConfirmationReminder()
+        public IActionResult SignUp()
         {
-            return View("ConfirmationReminder");
+            return View("SignUp", new SignUpViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(SignUpViewModel signUpViewModel)
+        [ActionName(nameof(SignUpPostAsync))]
+        public async Task<IActionResult> SignUpPostAsync(SignUpViewModel signUpViewModel)
         {
-            await _userManagementService.SignUp(signUpViewModel.Name, signUpViewModel.Surname, signUpViewModel.UserName,
-                                                signUpViewModel.Password, signUpViewModel.Email, signUpViewModel.Roles);
+            if (!ModelState.IsValid)
+                return View("SignUp", signUpViewModel);
 
-            return Ok();
+            await _serviceManager.UserManagementService.SignUp(signUpViewModel.Name, signUpViewModel.Surname, signUpViewModel.UserName,
+                                                signUpViewModel.Password, signUpViewModel.Email);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        [ActionName("SignIn")]
-        public async Task<IActionResult> SignIn(SignInViewModel signInViewModel)
+        [ActionName(nameof(SignInPostAsync))]
+        public async Task<IActionResult> SignInPostAsync(SignInViewModel signInViewModel)
         {
-            var token = await _userManagementService.LoginAsync(signInViewModel.UserName, signInViewModel.Password);
+            if (!ModelState.IsValid)
+                return View("Index", signInViewModel);
+
+            var token = await _serviceManager.UserManagementService.LoginAsync(signInViewModel.UserName, signInViewModel.Password);
 
             Response.Cookies.Append(Constants.XAccessToken, token.Token, new CookieOptions()
-            { 
+            {
                 HttpOnly = true,
                 SameSite = SameSiteMode.Strict
             });
