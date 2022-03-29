@@ -16,12 +16,12 @@ namespace Client.Controllers
             _serviceManager = serviceManager;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
 
-        public IActionResult SignUp()
+        public ViewResult SignUp()
         {
             return View("SignUp", new SignUpViewModel());
         }
@@ -36,7 +36,7 @@ namespace Client.Controllers
             await _serviceManager.UserManagementService.SignUp(signUpViewModel.Name, signUpViewModel.Surname, signUpViewModel.UserName,
                                                 signUpViewModel.Password, signUpViewModel.Email);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
