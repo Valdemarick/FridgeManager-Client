@@ -1,53 +1,53 @@
 ﻿using Client.Models.Fridges;
-using Domain.Entities.FridgeModel;
 using Domain.Entities.Fridges;
 using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Client.Controllers
 {
     public class FridgesController : Controller
     {
-        private readonly IFridgeService _fridgeService;
-        private readonly IFridgeModelService _fridgeModelService;
+        private readonly IServiceManager _serviceManager;
 
-        public FridgesController(IFridgeService fridgeService, IFridgeModelService fridgeModelService)
+        public FridgesController(IServiceManager serviceManager)
         {
-            _fridgeService = fridgeService;
-            _fridgeModelService = fridgeModelService;
+            _serviceManager = serviceManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<ViewResult> Index()
         {
             var fridges = new FridgesViewModel
             {
-                Fridges = await _fridgeService.GetAllFridgesAsync()
+                Fridges = await _serviceManager.FridgeService.GetAllFridgesAsync()
             };
 
             return View(fridges);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<ViewResult> Create()
         {
-            var models = await GetModels();
+            var models = await _serviceManager.FridgeModelService.GetAllFridgeModelsAsync();
             SelectList modelsList = new SelectList(models, "Id", "Name");
 
-            ViewBag.Models = modelsList;
+            var products = await _serviceManager.ProductService.GetAllProductsAsync();
+            var fridgeForCreationViewModel = new FridgeForCreationViewModel()
+            {
+                Products = new MultiSelectList(products, "Id", "Name"),
+            };
 
-            return View("Create", new FridgeForCreationViewModel());
+            ViewBag.Models = modelsList;
+            return View("Create", fridgeForCreationViewModel);
         }
 
-        public async Task<IActionResult> Update(FridgeForUpdateViewModel fridgeForUpdateViewModel)
+        public async Task<ViewResult> Update(FridgeForUpdateViewModel fridgeForUpdateViewModel)
         {
-            var models = await GetModels();
+            var models = await _serviceManager.FridgeModelService.GetAllFridgeModelsAsync();
             SelectList modelsList = new SelectList(models, "Id", "Name");
 
             ViewBag.Models = modelsList;
-
             return View("Update", fridgeForUpdateViewModel);
         }
 
@@ -58,14 +58,12 @@ namespace Client.Controllers
             if (!ModelState.IsValid)
                 return View("Create", fridgeForCreationViewModel);
 
-            var fridgeForCreation = new FridgeForCreation()
+            var createdFridge = await _serviceManager.FridgeService.CreateFridgeAsync(new FridgeForCreation()
             {
                 FridgeModelId = fridgeForCreationViewModel.FridgeModelId,
                 OwnerName = fridgeForCreationViewModel?.OwnerName,
                 Description = fridgeForCreationViewModel?.Description,
-            };
-
-            await _fridgeService.CreateFridgeAsync(fridgeForCreation);
+            });
 
             return RedirectToAction("Index");
         }
@@ -77,15 +75,13 @@ namespace Client.Controllers
             if (!ModelState.IsValid)
                 return View("Update", fridgeForUpdateViewModel);
 
-            var fridgeForUpdate = new FridgeForUpdate()
+            await _serviceManager.FridgeService.UpdateFridgeAsync(new FridgeForUpdate()
             {
                 Id = fridgeForUpdateViewModel.Id,
                 FridgeModelId = fridgeForUpdateViewModel.FridgeModelId,
                 OwnerName = fridgeForUpdateViewModel?.OwnerName,
                 Description = fridgeForUpdateViewModel?.Description
-            };
-
-            await _fridgeService.UpdateFridgeAsync(fridgeForUpdate);
+            });
 
             return RedirectToAction("Index");
         }
@@ -94,12 +90,8 @@ namespace Client.Controllers
         [ActionName(nameof(DeleteFridgeAsync))]
         public async Task<IActionResult> DeleteFridgeAsync(Guid id)
         {
-            await _fridgeService.DeleteFridgeAsync(id);
-
+            await _serviceManager.FridgeService.DeleteFridgeAsync(id);
             return RedirectToAction("Index");
         }
-
-        private async Task<List<FridgeModel>> GetModels() =>
-            await _fridgeModelService.GetAllFridgeModelsAsync();
     }
 }
