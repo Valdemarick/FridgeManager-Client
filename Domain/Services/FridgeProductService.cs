@@ -24,5 +24,8 @@ namespace Domain.Services
 
         public async Task AddProductsWhereEmpty() =>
             await _fridgeProductRepository.AddProductsWhereEmpty();
+
+        public async Task DeleteProductFromFridgeById(Guid id) =>
+            await _fridgeProductRepository.DeleteProductFromFridgeById(id);
     }
 }

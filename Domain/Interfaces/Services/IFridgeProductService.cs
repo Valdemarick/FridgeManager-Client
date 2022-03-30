@@ -10,5 +10,6 @@ namespace Domain.Interfaces.Services
         Task AddProductsIntoFridge(List<FridgeProductForCreation> fridgeProductsForCreation);
         Task<List<FridgeProduct>> GetFridgeProductsByFridgeId(Guid fridgeId);
         Task AddProductsWhereEmpty();
+        Task DeleteProductFromFridgeById(Guid id);
     }
 }

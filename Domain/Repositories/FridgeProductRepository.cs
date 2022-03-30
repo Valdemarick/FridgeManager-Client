@@ -28,5 +28,10 @@ namespace Domain.Repositories
             await FlurlClient
             .Request($"/fridges-products/where-products-are-empty")
             .PostAsync();
+
+        public async Task DeleteProductFromFridgeById(Guid id) =>
+            await FlurlClient
+            .Request($"fridges-products/{id}")
+            .DeleteAsync();
     }
 }
