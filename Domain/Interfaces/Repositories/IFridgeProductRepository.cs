@@ -11,5 +11,6 @@ namespace Domain.Interfaces.Repositories
         Task<List<FridgeProduct>> GetFridgeProductsByFridgeId(Guid fridgeId);
         Task AddProductsWhereEmpty();
         Task DeleteProductFromFridgeById(Guid id);
+        Task UpdateFridgeProductAsync(FridgeProductForUpdate fridgeProductForUpdate);
     }
 }

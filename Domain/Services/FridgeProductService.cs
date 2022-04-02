@@ -27,5 +27,8 @@ namespace Domain.Services
 
         public async Task DeleteProductFromFridgeById(Guid id) =>
             await _fridgeProductRepository.DeleteProductFromFridgeById(id);
+
+        public async Task UpdateFridgeProductAsync(FridgeProductForUpdate fridgeProductForUpdate) =>
+            await _fridgeProductRepository.UpdateFridgeProductAsync(fridgeProductForUpdate);
     }
 }
