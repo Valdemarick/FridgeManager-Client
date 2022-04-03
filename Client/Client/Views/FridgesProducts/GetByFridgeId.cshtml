@@ -1,0 +1,68 @@
+﻿@model Client.Models.FridgeProducts.FridgeProductViewModel
+
+@{
+    ViewData["Title"] = "Fridge products";
+}
+
+<h2>Fridge products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("FridgeId")
+            </th>
+            <th>
+                @Html.DisplayName("ProductId")
+            </th>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Product Quantity")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FridgeProducts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.FridgeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ProductQuantity)
+                </td>
+                <td>
+                    @using (@Html.BeginForm("Update", "FridgesProducts"))
+                    {
+                        @Html.Hidden("Id", item.Id)
+                        @Html.Hidden("FridgeId", item.FridgeId)
+                        @Html.Hidden("ProductId", item.ProductId)
+                        @Html.Hidden("ProductQuantity", item.ProductQuantity)
+                        <input type="submit" value="Update">
+                    }
+                </td>
+                <td>
+                    @using (@Html.BeginForm("DeleteProductFromFridgeByIdAsync", "FridgesProducts"))
+                    {
+                        @Html.Hidden("Id", item.Id)
+                        <input type="submit" value="Delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
