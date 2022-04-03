@@ -8,6 +8,6 @@ namespace Domain.Entities.FridgeProduct
         public Guid FridgeId { get; set; }
         public Guid ProductId { get; set; }
         public string ProductName { get; set; }
-        public int ProductCount { get; set; }
+        public int ProductQuantity { get; set; }
     }
 }
