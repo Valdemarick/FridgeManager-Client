@@ -1,32 +1,32 @@
 ﻿@model Client.Models.Fridges.FridgesViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Fridges";
 }
 
 <h1>Fridges</h1>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    @Html.ActionLink("Create a new fridge", "Create")
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].Id)
+                @Html.DisplayName("Id")
             </th>
             <th>
-                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].OwnerName)
+                @Html.DisplayName("Owner name")
             </th>
              <th>
-                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].Manufacturer)
+                @Html.DisplayName("Manufacturer")
             </th>
              <th>
-                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].ProductionYear)
+                @Html.DisplayName("Production year")
             </th>
             <th>
-                @Html.DisplayNameFor(fridgeItem => fridgeItem.Fridges[0].Description)
+                @Html.DisplayName("Description")
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -55,10 +55,26 @@
                     @Html.Hidden("Description", fridge.Description)
                     <input type="submit"  value="Update"/>
                 }
-                @using (@Html.BeginForm("DeleteFridgeAsync", "Fridges", FormMethod.Post))
+            </td>
+            <td>
+                @using (@Html.BeginForm("DeleteFridgeAsync", "Fridges"))
                 {
                     @Html.Hidden("Id", fridge.Id)
                     <input type="submit" value="Delete"/>
+                }
+            </td>
+            <td>
+                @using (@Html.BeginForm("GetByFridgeId", "FridgesProducts", FormMethod.Get))
+                {
+                    @Html.Hidden("fridgeId", fridge.Id)
+                    <input type="submit" value="View products">
+                }
+            </td>
+            <td>
+                @using (@Html.BeginForm("AddProductsIntoFridge", "FridgesProducts", FormMethod.Post))
+                {
+                    @Html.Hidden("fridgeId", fridge.Id)
+                    <input type="submit" value="+ Add product(s)">
                 }
             </td>
         </tr>

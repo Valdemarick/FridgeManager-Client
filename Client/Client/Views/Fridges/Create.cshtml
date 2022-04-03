@@ -1,36 +1,35 @@
 ﻿@model Client.Models.Fridges.FridgeForCreationViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a new fridge";
 }
 
-<h1>Create</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="blue-container">
+    <div class="signup-form pt-5">
         @using (@Html.BeginForm("CreateFridgeAsync", "Fridges", FormMethod.Post))
         {
-            @Html.ValidationSummary()
+            <h2>Create</h2>
+            <p>Enter data to update the fridge</p>
+            <hr />
             <div class="form-group">
-                <label asp-for="OwnerName" class="control-label"></label>
-                <input asp-for="OwnerName" class="form-control" />
+                @Html.TextBoxFor(model => model.OwnerName, new { @class="form-control", placeholder="Owner Name" })
+                @Html.ValidationMessageFor(model => model.OwnerName)
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                @Html.TextAreaFor(model => model.Description, new { @class="form-control", placeholder="Description", cols=50, rows=4 })
+                @Html.ValidationMessageFor(model => model.Description)
             </div>
             <div class="form-group">
-                <label asp-for="FridgeModelId" class="control-label">FridgeModel</label>
-                @Html.DropDownListFor(model => model.FridgeModelId, ViewBag.Models as SelectList)
-            </div> 
+                @Html.DropDownListFor(model => model.FridgeModelId, ViewBag.Models as SelectList, new { @class="form-control", placeholder="Fridge Model" })
+            </div>
+            <div class="form-group">
+                @Html.ListBoxFor(model => model.ProductIds, @Model.Products as MultiSelectList,
+                                 new { @class="form-control", multiple="multiple", placeholder="Products" })
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         }
+         <div class="hint-text">@Html.ActionLink("Back to List", "Index")</div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
