@@ -5,9 +5,11 @@
 }
 
 <h1>Products</h1>
-<p>
-    @Html.ActionLink("Create a new product", "Create")
-</p>
+
+<div id="PlaceHolderHere"></div>
+<button type="button" class="btn btn-primary mb-3" data-toggle="ajax-modal" data-target="#createProduct" 
+        data-url="@Url.Action("Create")">Create a new product</button>
+
 <table class="table">
     <thead>
         <tr>
