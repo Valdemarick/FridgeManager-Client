@@ -1,0 +1,15 @@
+﻿@model Client.Models.Products.ProductForDeleteViewModel
+
+@{
+    Layout = "_PopUpPartial";
+}
+
+<div class="modal-body">
+    @using(@Html.BeginForm("DeleteProductAsync", "Products"))
+    {
+        @Html.HiddenFor(m => @Model.Id)
+        <div class="form-group">
+            <span>Are you sure you'd like to delete this product? This action cannot be undone</span>
+        </div>
+    }
+</div>
