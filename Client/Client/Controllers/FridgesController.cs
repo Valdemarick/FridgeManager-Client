@@ -17,7 +17,7 @@ namespace Client.Controllers
             _serviceManager = serviceManager;
         }
 
-        public async Task<ViewResult> Index()
+        public async Task<IActionResult> Index()
         {
             var fridges = new FridgesViewModel
             {
@@ -27,7 +27,9 @@ namespace Client.Controllers
             return View(fridges);
         }
 
-        public async Task<ViewResult> Create()
+        public IActionResult Delete(FridgeForDeleteViewModel fridgeForDeleteViewModel) => PartialView("_DeletePartial", fridgeForDeleteViewModel);
+
+        public async Task<IActionResult> Create()
         {
             var models = await _serviceManager.FridgeModelService.GetAllFridgeModelsAsync();
             SelectList modelsList = new SelectList(models, "Id", "Name");
@@ -42,7 +44,7 @@ namespace Client.Controllers
             return View("Create", fridgeForCreationViewModel);
         }
 
-        public async Task<ViewResult> Update(FridgeForUpdateViewModel fridgeForUpdateViewModel)
+        public async Task<IActionResult> Update(FridgeForUpdateViewModel fridgeForUpdateViewModel)
         {
             var models = await _serviceManager.FridgeModelService.GetAllFridgeModelsAsync();
             SelectList modelsList = new SelectList(models, "Id", "Name");
