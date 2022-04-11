@@ -1,0 +1,15 @@
+﻿@model Client.Models.Fridges.FridgeForDeleteViewModel
+
+@{
+    Layout = "_PopUpPartial";
+}
+
+<div class="modal-body">
+    @using (@Html.BeginForm("DeleteFridgeAsync", "Fridges"))
+    {
+        @Html.HiddenFor(m => @Model.Id)
+        <div class="form-group">
+            <span>Are you sure you'd like to delete this fridge? This action cannot be undone</span>
+        </div>
+    }
+</div>
