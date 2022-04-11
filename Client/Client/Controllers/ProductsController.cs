@@ -16,7 +16,7 @@ namespace Client.Controllers
             _serviceManager = serviceManager;
         }
 
-        public async Task<ViewResult> Index()
+        public async Task<IActionResult> Index()
         {
             var products = new ProductsViewModel
             {
@@ -26,9 +26,11 @@ namespace Client.Controllers
             return View(products);
         }
 
-        public ViewResult Create() => View("Create", new ProductForCreationViewModel());
+        public IActionResult Create() => View("Create", new ProductForCreationViewModel());
 
-        public ViewResult Update(ProductForUpdateViewModel productForUpdateViewModel) => View("Update", productForUpdateViewModel);
+        public IActionResult Update(ProductForUpdateViewModel productForUpdateViewModel) => View("Update", productForUpdateViewModel);
+
+        public IActionResult Delete(ProductForDeleteViewModel productForDeleteViewModel) => PartialView("_DeletePartial", productForDeleteViewModel);
 
         [HttpPost]
         [ActionName(nameof(CreateProductAsync))]
@@ -47,8 +49,8 @@ namespace Client.Controllers
         }
 
         [HttpPost]
-        [ActionName(nameof(DeleteProductAsync))]
-        public async Task<IActionResult> DeleteProductAsync(Guid id)
+        [ActionName(nameof(DeleteAsync))]
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
             await _serviceManager.ProductService.DeleteProductAsync(id);
             return RedirectToAction("Index");
