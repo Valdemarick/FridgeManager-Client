@@ -14,22 +14,22 @@ namespace Domain.Repositories
         public FridgeProductRepository(IFlurlClientFactory flurlClientFactory, IHttpContextAccessor httpContextAccessor)
             : base(flurlClientFactory, httpContextAccessor) { }
 
-        public async Task AddProductsIntoFridge(List<FridgeProductForCreation> fridgeProductsForCreation) =>
+        public async Task AddProductsIntoFridgeAsync(List<FridgeProductForCreation> fridgeProductsForCreation) =>
             await FlurlClient
             .Request("/fridges-products")
             .PostJsonAsync(fridgeProductsForCreation);
 
-        public async Task<List<FridgeProduct>> GetFridgeProductsByFridgeId(Guid fridgeId) =>
+        public async Task<List<FridgeProduct>> GetFridgeProductsByFridgeIdAsync(Guid fridgeId) =>
             await FlurlClient
             .Request($"/fridges-products/fridge/{fridgeId}/products")
             .GetJsonAsync<List<FridgeProduct>>();
 
-        public async Task AddProductsWhereEmpty() =>
+        public async Task AddProductsWhereEmptyAsync() =>
             await FlurlClient
             .Request($"/fridges-products/where-products-are-empty")
             .PostAsync();
 
-        public async Task DeleteProductFromFridgeById(Guid id) =>
+        public async Task DeleteProductFromFridgeByIdAsync(Guid id) =>
             await FlurlClient
             .Request($"/fridges-products/{id}")
             .DeleteAsync();

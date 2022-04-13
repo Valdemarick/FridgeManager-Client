@@ -25,7 +25,7 @@ namespace Domain.Repositories
                 .ReceiveJson<TokenResponse>();
         }
 
-        public async Task SignUp(string name, string surname, string userName, string password, string email)
+        public async Task SignUpAsync(string name, string surname, string userName, string password, string email)
         {
             var defaultRole = new List<string> { "User" };
             var userSignUp = new UserForRegistration()

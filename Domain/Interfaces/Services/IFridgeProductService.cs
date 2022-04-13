@@ -7,10 +7,10 @@ namespace Domain.Interfaces.Services
 {
     public interface IFridgeProductService
     {
-        Task AddProductsIntoFridge(List<FridgeProductForCreation> fridgeProductsForCreation);
-        Task<List<FridgeProduct>> GetFridgeProductsByFridgeId(Guid fridgeId);
-        Task AddProductsWhereEmpty();
-        Task DeleteProductFromFridgeById(Guid id);
+        Task AddProductsIntoFridgeAsync(List<FridgeProductForCreation> fridgeProductsForCreation);
+        Task<List<FridgeProduct>> GetFridgeProductsByFridgeIdAsync(Guid fridgeId);
+        Task AddProductsWhereEmptyAsync();
+        Task DeleteProductFromFridgeByIdAsync(Guid id);
         Task UpdateFridgeProductAsync(FridgeProductForUpdate fridgeProductForUpdate);
     }
 }

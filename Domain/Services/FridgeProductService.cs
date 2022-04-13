@@ -16,17 +16,17 @@ namespace Domain.Services
             _fridgeProductRepository = fridgeProductRepository;
         }
 
-        public async Task AddProductsIntoFridge(List<FridgeProductForCreation> fridgeProductsForCreation) =>
-            await _fridgeProductRepository.AddProductsIntoFridge(fridgeProductsForCreation);
+        public async Task AddProductsIntoFridgeAsync(List<FridgeProductForCreation> fridgeProductsForCreation) =>
+            await _fridgeProductRepository.AddProductsIntoFridgeAsync(fridgeProductsForCreation);
 
-        public async Task<List<FridgeProduct>> GetFridgeProductsByFridgeId(Guid fridgeId) =>
-            await _fridgeProductRepository.GetFridgeProductsByFridgeId(fridgeId);
+        public async Task<List<FridgeProduct>> GetFridgeProductsByFridgeIdAsync(Guid fridgeId) =>
+            await _fridgeProductRepository.GetFridgeProductsByFridgeIdAsync(fridgeId);
 
-        public async Task AddProductsWhereEmpty() =>
-            await _fridgeProductRepository.AddProductsWhereEmpty();
+        public async Task AddProductsWhereEmptyAsync() =>
+            await _fridgeProductRepository.AddProductsWhereEmptyAsync();
 
-        public async Task DeleteProductFromFridgeById(Guid id) =>
-            await _fridgeProductRepository.DeleteProductFromFridgeById(id);
+        public async Task DeleteProductFromFridgeByIdAsync(Guid id) =>
+            await _fridgeProductRepository.DeleteProductFromFridgeByIdAsync(id);
 
         public async Task UpdateFridgeProductAsync(FridgeProductForUpdate fridgeProductForUpdate) =>
             await _fridgeProductRepository.UpdateFridgeProductAsync(fridgeProductForUpdate);

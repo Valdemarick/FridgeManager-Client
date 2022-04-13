@@ -33,7 +33,7 @@ namespace Client.Controllers
             if (!ModelState.IsValid)
                 return View("SignUp", signUpViewModel);
 
-            await _serviceManager.UserManagementService.SignUp(signUpViewModel.Name, signUpViewModel.Surname, signUpViewModel.UserName,
+            await _serviceManager.UserManagementService.SignUpAsync(signUpViewModel.Name, signUpViewModel.Surname, signUpViewModel.UserName,
                                                 signUpViewModel.Password, signUpViewModel.Email);
 
             return RedirectToAction("Index");
