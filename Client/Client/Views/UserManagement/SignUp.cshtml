@@ -14,23 +14,27 @@
             <hr>
             <div class="form-group">
                 <div class="row">
-                    <div class="col">@Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Name" })</div>
-                    @Html.ValidationMessageFor(model => model.Name)
-                    <div class="col">@Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Surname" })</div>
-                    @Html.ValidationMessageFor(model => model.Surname)
+                    <div class="col">
+                        <input asp-for="Name" class="form-control" placeholder="Name" autocomplete="off" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <input asp-for="Surname" class="form-control" placeholder="Surname" autocomplete="off" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "User name", required = "required" })
-                @Html.ValidationMessageFor(model => model.UserName)
+                <input asp-for="UserName" class="form-control" placeholder="User Name" required autocomplete="off" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "required" })
-                @Html.ValidationMessageFor(model => model.Password)
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required autocomplete="off" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", required="required" })
-                @Html.ValidationMessageFor(model => model.Email)
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email" required autocomplete="off" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
