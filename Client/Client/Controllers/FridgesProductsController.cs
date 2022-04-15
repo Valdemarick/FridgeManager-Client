@@ -16,26 +16,29 @@ namespace Client.Controllers
             _serviceManager = serviceManager;
         }
 
-        public async Task<ViewResult> GetByFridgeId(Guid fridgeId)
+        public async Task<IActionResult> GetByFridgeId(Guid fridgeId)
         {
             var fridgeProductsViewModel = new FridgeProductViewModel()
             {
-                FridgeProducts = await _serviceManager.FridgeProductService.GetFridgeProductsByFridgeId(fridgeId)
+                FridgeProducts = await _serviceManager.FridgeProductService.GetFridgeProductsByFridgeIdAsync(fridgeId)
             };
 
             return View(fridgeProductsViewModel);
         }
 
-        public ViewResult Update(FridgeProductForUpdateViewModel fridgeProductForUpdateViewModel)
+        public IActionResult Update(FridgeProductForUpdateViewModel fridgeProductForUpdateViewModel)
         {
             return View("Update", fridgeProductForUpdateViewModel);
         }
+
+        public IActionResult Delete(FridgeProductForDeleteViewModel fridgeProductForDeleteViewModel) => 
+            PartialView("_DeletePartial", fridgeProductForDeleteViewModel);
 
         [HttpPost]
         [ActionName(nameof(DeleteProductFromFridgeByIdAsync))]
         public async Task<IActionResult> DeleteProductFromFridgeByIdAsync(Guid id)
         {
-            await _serviceManager.FridgeProductService.DeleteProductFromFridgeById(id);
+            await _serviceManager.FridgeProductService.DeleteProductFromFridgeByIdAsync(id);
             return RedirectToAction("Index", "Home");
         }
 
