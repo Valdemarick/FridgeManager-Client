@@ -1,35 +1,38 @@
 ﻿@model Client.Models.Fridges.FridgeForCreationViewModel
 
 @{
-    ViewData["Title"] = "Create a new fridge";
+    ViewData["Title"] = "Create Fridge";
 }
 
-<div class="blue-container">
-    <div class="signup-form pt-5">
-        @using (@Html.BeginForm("CreateFridgeAsync", "Fridges", FormMethod.Post))
-        {
-            <h2>Create</h2>
-            <p>Enter data to update the fridge</p>
+<form method="post" asp-action="CreateFridgeAsync">
+    <div class="border-light window p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Fridge</h2>
             <hr />
-            <div class="form-group">
-                @Html.TextBoxFor(model => model.OwnerName, new { @class="form-control", placeholder="Owner Name" })
-                @Html.ValidationMessageFor(model => model.OwnerName)
-            </div>
-            <div class="form-group">
-                @Html.TextAreaFor(model => model.Description, new { @class="form-control", placeholder="Description", cols=50, rows=4 })
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
-            <div class="form-group">
-                @Html.DropDownListFor(model => model.FridgeModelId, ViewBag.Models as SelectList, new { @class="form-control", placeholder="Fridge Model" })
-            </div>
-            <div class="form-group">
-                @Html.ListBoxFor(model => model.ProductIds, @Model.Products as MultiSelectList,
-                                 new { @class="form-control", multiple="multiple", placeholder="Products" })
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        }
-         <div class="hint-text">@Html.ActionLink("Back to List", "Index")</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Owner Name</label>
+            <input asp-for="OwnerName" class="form-control" autocomplete="off" />
+            <span asp-validation-for="OwnerName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input asp-for="Description" class="form-control" autocomplete="off" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fridge Model</label>
+            @Html.DropDownListFor(model => model.FridgeModelId, ViewBag.Models as SelectList,
+            new { @class="form-select" })
+        </div>
+        <div class="form-group">
+            <label class="form-label">Products</label>
+            @Html.ListBoxFor(model => model.ProductIds, @Model.Products as MultiSelectList,
+            new { @class="form-select", multiple="multiple" })
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Create</button>
+            <a asp-action="Index" class="btn btn-danger btn-lg mx-2">Cancel</a>
+        </div>
     </div>
-</div>
+</form>

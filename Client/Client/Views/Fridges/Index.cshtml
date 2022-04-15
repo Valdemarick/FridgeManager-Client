@@ -4,80 +4,76 @@
     ViewData["Title"] = "Fridges";
 }
 
-<h1>Fridges</h1>
-<p>
-    @Html.ActionLink("Create a new fridge", "Create")
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Id")
-            </th>
-            <th>
-                @Html.DisplayName("Owner name")
-            </th>
-             <th>
-                @Html.DisplayName("Manufacturer")
-            </th>
-             <th>
-                @Html.DisplayName("Production year")
-            </th>
-            <th>
-                @Html.DisplayName("Description")
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var fridge in Model.Fridges) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => fridge.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => fridge.OwnerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => fridge.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => fridge.ProductionYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => fridge.Description)
-            </td>
-            <td>
-                @using (@Html.BeginForm("Update", "Fridges"))
-                {
-                    @Html.Hidden("Id", fridge.Id)
-                    @Html.Hidden("OwnerName", fridge.OwnerName)
-                    @Html.Hidden("Description", fridge.Description)
-                    <input type="submit"  value="Update"/>
-                }
-            </td>
-            <td>
-                @using (@Html.BeginForm("DeleteFridgeAsync", "Fridges"))
-                {
-                    @Html.Hidden("Id", fridge.Id)
-                    <input type="submit" value="Delete"/>
-                }
-            </td>
-            <td>
-                @using (@Html.BeginForm("GetByFridgeId", "FridgesProducts", FormMethod.Get))
-                {
-                    @Html.Hidden("fridgeId", fridge.Id)
-                    <input type="submit" value="View products">
-                }
-            </td>
-            <td>
-                @using (@Html.BeginForm("AddProductsIntoFridge", "FridgesProducts", FormMethod.Post))
-                {
-                    @Html.Hidden("fridgeId", fridge.Id)
-                    <input type="submit" value="+ Add product(s)">
-                }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div id="PlaceHolderHere"></div>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Fridge List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Fridge
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Owner name")
+                </th>
+                <th>
+                    @Html.DisplayName("Manufacturer")
+                </th>
+                <th>
+                    @Html.DisplayName("Production year")
+                </th>
+                <th>
+                    @Html.DisplayName("Description")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fridge in Model.Fridges)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => fridge.OwnerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fridge.Manufacturer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fridge.ProductionYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fridge.Description)
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            @using (@Html.BeginForm("Update", "Fridges"))
+                            {
+                                @Html.Hidden("Id", fridge.Id)
+                                @Html.Hidden("OwnerName", fridge.OwnerName)
+                                @Html.Hidden("Description", fridge.Description)
+                                <button type="submit" class="btn btn-warning mx-2"><i class="bi bi-pencil-square"></i>Update</button>
+                            }
+                            <form>
+                                <button type="button" class="btn btn-danger mx-2" data-toggle="ajax-modal" data-target="#remove"
+                                    data-url="@Url.Action($"Delete/{fridge.Id}")"><i class="bi bi-trash-fill"></i>Delete</button>
+                            </form>
+                            @using (@Html.BeginForm("GetByFridgeId", "FridgesProducts", FormMethod.Get))
+                            {
+                                @Html.Hidden("fridgeId", fridge.Id)
+                                <button type="submit" class="btn btn-warning mx-2"><i class="bi bi-eye"></i>Products</button>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
