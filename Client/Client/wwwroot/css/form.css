@@ -1,0 +1,13 @@
+﻿.window {
+    width: 40%;
+    margin: auto;
+}
+
+#h2-text, th, td {
+    text-align: center;
+}
+
+.products-table {
+    width: 50%;
+    margin: auto;
+}

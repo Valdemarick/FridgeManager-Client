@@ -1,7 +1,10 @@
-﻿.blue-container {
+﻿/*SIGN UN and SIGN up form*/
+.blue-container {
     color: #fff;
     background: #3598dc;
     font-family: 'Roboto', sans-serif;
+    width: 600px !important;
+    margin: auto;
 }
 
 .form-control {
