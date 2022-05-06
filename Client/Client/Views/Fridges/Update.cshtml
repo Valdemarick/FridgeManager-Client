@@ -10,6 +10,7 @@
             <h2 class="text-primary">Update Fridge</h2>
             <hr />
         </div>
+        @Html.Hidden("Id", @Model.Id)
         <div class="mb-3">
             <label class="form-label">Owner Name</label>
             <input asp-for="OwnerName" class="form-control" autocomplete="off" />
@@ -26,7 +27,7 @@
                 new { @class="form-select" } )
         </div>
         <div class="mt-4">
-            <button type="submit" class="btn btn-success btn-lg">Create</button>
+            <button type="submit" class="btn btn-success btn-lg">Update</button>
             <a asp-action="Index" class="btn btn-danger btn-lg mx-2">Cancel</a>
         </div>
     </div>
