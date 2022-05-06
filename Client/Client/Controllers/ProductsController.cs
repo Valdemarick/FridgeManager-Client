@@ -37,7 +37,9 @@ namespace Client.Controllers
         public async Task<IActionResult> CreateProductAsync(ProductForCreationViewModel productForCreationViewModel)
         {
             if (!ModelState.IsValid)
+            {
                 return View("Create", productForCreationViewModel);
+            }
 
             await _serviceManager.ProductService.CreateProductAsync(new ProductForCreation()
             {
@@ -49,8 +51,8 @@ namespace Client.Controllers
         }
 
         [HttpPost]
-        [ActionName(nameof(DeleteAsync))]
-        public async Task<IActionResult> DeleteAsync(Guid id)
+        [ActionName(nameof(DeleteProductAsync))]
+        public async Task<IActionResult> DeleteProductAsync(Guid id)
         {
             await _serviceManager.ProductService.DeleteProductAsync(id);
             return RedirectToAction("Index");
@@ -61,7 +63,9 @@ namespace Client.Controllers
         public async Task<IActionResult> UpdateProductAsync(ProductForUpdateViewModel productForUpdateViewModel)
         {
             if (!ModelState.IsValid)
+            {
                 return View("Update", productForUpdateViewModel);
+            }
 
             await _serviceManager.ProductService.UpdateProductAsync(new ProductForUpdate()
             {
