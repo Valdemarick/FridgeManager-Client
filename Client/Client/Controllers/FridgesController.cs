@@ -1,9 +1,11 @@
 ﻿using Client.Models.Fridges;
+using Domain.Entities.FridgeProduct;
 using Domain.Entities.Fridges;
 using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Client.Controllers
@@ -58,7 +60,9 @@ namespace Client.Controllers
         public async Task<IActionResult> CreateFridgeAsync(FridgeForCreationViewModel fridgeForCreationViewModel)
         {
             if (!ModelState.IsValid)
+            {
                 return View("Create", fridgeForCreationViewModel);
+            }
 
             var createdFridge = await _serviceManager.FridgeService.CreateFridgeAsync(new FridgeForCreation()
             {
@@ -66,6 +70,22 @@ namespace Client.Controllers
                 OwnerName = fridgeForCreationViewModel?.OwnerName,
                 Description = fridgeForCreationViewModel?.Description,
             });
+
+            var products = await _serviceManager.ProductService.GetAllProductsAsync();
+
+            if (fridgeForCreationViewModel.ProductIds != null){
+                 var prodcutsToAdd = (from product in products
+                                     from id in fridgeForCreationViewModel?.ProductIds
+                                     where product.Id == id
+                                     select new FridgeProductForCreation
+                                     {
+                                         FridgeId = createdFridge.Id,
+                                         ProductId = id,
+                                         ProductQuantity = product.Quantity
+                                     }).ToList();
+                await _serviceManager.FridgeProductService.AddProductsIntoFridgeAsync(prodcutsToAdd);
+            }
+
 
             return RedirectToAction("Index");
         }
@@ -75,7 +95,9 @@ namespace Client.Controllers
         public async Task<IActionResult> UpdateFridgeAsync(FridgeForUpdateViewModel fridgeForUpdateViewModel)
         {
             if (!ModelState.IsValid)
+            {
                 return View("Update", fridgeForUpdateViewModel);
+            }
 
             await _serviceManager.FridgeService.UpdateFridgeAsync(new FridgeForUpdate()
             {

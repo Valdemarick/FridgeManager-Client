@@ -9,7 +9,7 @@ namespace Client.Models.Users
 
         [Required]
         [MinLength(8, ErrorMessage = "The minimum size of the password is 8 characters")]
-        [RegularExpression(@"(?=.*[0-9])", ErrorMessage = "The password must contain at least one number")]
+        //[RegularExpression(@"^((?=.*\d)(?=.*[a-z]))", ErrorMessage = "The password must contain at least one number")]
         public string Password { get; set; }
     }
 }
